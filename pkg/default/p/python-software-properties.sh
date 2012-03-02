@@ -13,4 +13,7 @@ install_global() {
 
 ### Main: ---------------------------------------------------------------------
 
-"$1";
+case "$1" in
+    install_global) "$1" ;;
+    *)  echo "Command $0 $1 is not supported." ;;
+esac
