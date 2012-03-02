@@ -5,7 +5,7 @@
 install_global() {
     
     # Dependencies:
-    pkg/python-software-properties.sh install_global;
+    pkg/default/p/python-software-properties.sh install_global;
 
     # Installation:
     sudo add-apt-repository ppa:chris-lea/node.js;
