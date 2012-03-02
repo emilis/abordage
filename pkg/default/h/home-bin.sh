@@ -17,7 +17,7 @@ install() {
     test_script='PATH="$HOME/bin:$PATH"'
     profile_script=$(cat <<'eofscript'
         #set PATH so it includes users private bin if it exists
-        if [-d "$HOME/bin" ];
+        if [ -d "$HOME/bin" ];
         then PATH="$HOME/bin:$PATH"
         fi
 eofscript
