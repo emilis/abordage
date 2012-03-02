@@ -13,7 +13,7 @@ command_exists() {
 
 git_extract() {
     
-    git clone "https://emilis@github.com/emilis/abordage.git" "$DIR"
+    git clone "https://github.com/emilis/abordage.git" "$DIR"
 }
 
 tar_extract() {
