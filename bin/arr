@@ -1,0 +1,21 @@
+#!/bin/sh
+
+### Functions: ----------------------------------------------------------------
+
+
+### Main: ---------------------------------------------------------------------
+
+case $1 in
+
+    install)
+        "pkg/$2.sh" install;
+    ;;
+
+    install-global)
+        "pkg/$2.sh" install_global;
+    ;;
+
+    *)
+        echo "Usage: arr {install|install-global}"
+    ;;
+esac
