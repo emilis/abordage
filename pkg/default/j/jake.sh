@@ -16,7 +16,7 @@ install() {
         pkg/default/h/home-bin.sh install
         
         npm install jake
-        ln -s "$HOME/node_modules/jake/bin/cli.js" "$HOME/bin"
+        ln -s "$HOME/node_modules/jake/bin/cli.js" "$HOME/bin/jake"
     fi
 }
 
