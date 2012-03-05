@@ -22,21 +22,23 @@ _install_tasks() {
 
 install_global() {
 
-    PREFIX="/usr";
-    LIB="$PREFIX/lib";
-    DIR="$LIB/abordage";
-    BIN="$PREFIX/bin";
+    . pkg/default/g/git.sh install_global
 
-    sudo _install_tasks
+    if [ -z "$PREFIX" ]; then   PREFIX="/usr"; fi
+    if [ -z "$DIR" ]; then      DIR="$PREFIX/lib/abordage"; fi
+    if [ -z "$BIN" ]; then      BIN="$PREFIX/bin"; fi
+
+    _install_tasks
 }
 
 install() {
 
+    . pkg/default/g/git.sh install
     . pkg/default/h/home-bin.sh install
 
-    PREFIX="$HOME/local";
-    DIR="$PREFIX/abordage";
-    BIN="$HOME/bin";
+    if [ -z "$PREFIX" ]; then   PREFIX="$HOME/local"; fi
+    if [ -z "$DIR" ]; then      DIR="$PREFIX/abordage"; fi
+    if [ -z "$BIN" ]; then      BIN="$HOME/bin"; fi
 
     _install_tasks
 }
