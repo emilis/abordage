@@ -21,7 +21,7 @@ get_pkg_script() {
 
 get_pkg_script "$2"
 
-if [ -z "$pkg_script" -o ! -f "$pkg_script"];
+if [ -z "$pkg_script" -o ! -f "$pkg_script" ];
 then
     echo "The script $pkg_script for the package $2 does not exist."
     exit 127;
