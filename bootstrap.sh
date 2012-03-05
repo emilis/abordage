@@ -2,7 +2,7 @@
 
 ### Variables: ----------------------------------------------------------------
 
-DIR="$HOME/abordage";
+DIR="abordage";
 
 ### Functions: ----------------------------------------------------------------
 
@@ -18,14 +18,12 @@ git_extract() {
 
 tar_extract() {
 
-    tarball="$HOME/abordage-latest.tar.gz";
+    tarball="abordage-latest.tar.gz";
     wget -O "$tarball" "https://github.com/emilis/abordage/tarball/master";
     tar xzvf "$tarball";
 }
 
 ### Main: ---------------------------------------------------------------------
-
-cd "$HOME";
 
 if command_exists git;
     then git_extract
@@ -33,6 +31,7 @@ if command_exists git;
 fi
 
 cd "$DIR";
+echo $(pwd -P);
 
-. bin/abordage.sh setup;
+bin/abordage.sh setup;
 
