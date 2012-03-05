@@ -34,5 +34,5 @@ fi
 
 cd "$DIR";
 
-. bin/abordage setup;
+. bin/abordage.sh setup;
 
