@@ -1,13 +1,6 @@
 #!/bin/sh
 
-### Main: ---------------------------------------------------------------------
+DIR="$(dirname $(dirname $(readlink -e $0)))";
 
-case "$1" in
-    setup)
-        echo "Congratulations on installing Abordage!";
-        echo "Usage: bin/arr {install|install-global} PACKAGE";
-        ;;
-    *)
-        echo "Abordage repository management is not yet working."
-    ;;
-esac
+cd "$DIR";
+bin/bordage.sh "$@"
