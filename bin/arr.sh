@@ -21,14 +21,27 @@ get_pkg_script() {
 
 get_pkg_script "$2"
 
+if [ -z "$pkg_script" -o ! -f "$pkg_script"];
+then
+    echo "The script $pkg_script for the package $2 does not exist."
+    exit 127;
+fi
+
 case $1 in
 
-    install)
+    install|install-local)
         "$pkg_script" install;
     ;;
 
     install-global)
-        "$pkg_script" install_global;
+        if [ $(id -u) -ne 0 ];
+        then 
+            echo "Root privileges required for \"install-global\" task."
+            echo "Please try \"sudo $0 $@\"";
+            exit 126;
+        else
+            "$pkg_script" install_global;
+        fi
     ;;
 
     *)
