@@ -20,7 +20,7 @@ install_global() {
                 echo "Unknown release codename. Cannot add source repo.";
                 return 1;
             else
-                add-apt-repository deb http://nginx.org/packages/ubuntu/ "$platform_codename" nginx
+                add-apt-repository "deb http://nginx.org/packages/ubuntu/ $platform_codename nginx"
                 apt-get update
                 apt-get install nginx
             fi
