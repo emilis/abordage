@@ -3,4 +3,4 @@
 DIR="$(dirname $(dirname $(readlink -e $0)))";
 
 cd "$DIR";
-bin/bordage.sh "$@"
+bin/abordage.sh "$@"
