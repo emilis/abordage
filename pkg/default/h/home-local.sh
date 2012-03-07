@@ -8,10 +8,8 @@ dir="$HOME/local";
 
 is_installed() {
 
-    if [ -d "$dir" ];
-    then return 0;
-    else return 1;
-    fi
+    test -d "$dir"
+    return $?
 }
 
 install() {
