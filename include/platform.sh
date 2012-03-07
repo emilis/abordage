@@ -8,7 +8,6 @@
 #   - platform_distro       Ubuntu / CentOS / Debian / ...
 #   - platform_release      X.Y
 #   - platform_codename     oneiric / natty / ...
-#   - platform_pkg_manager  apt-get / yum
 #
 
 export platform_os=$(uname -s); # "Linux";
@@ -33,15 +32,4 @@ else
 fi
 
 
-case "$platform_distro" in
-    Ubuntu|Debian)
-        export platform_pkg_manager="apt-get"
-        ;;
-    CentOS)
-        export platform_pkg_manager="yum"
-        ;;
-    *)
-        export platform_pkg_manager=""
-        ;;
-esac
 

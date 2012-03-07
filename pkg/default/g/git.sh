@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. include/pkg_manager.sh
+
 ### Functions: ----------------------------------------------------------------
 
 install_global() {
@@ -7,7 +9,7 @@ install_global() {
     if hash git 2>&-;
     then echo "Git is already installed."
     else
-        apt-get install git;
+        install_package git;
     fi
 }
 

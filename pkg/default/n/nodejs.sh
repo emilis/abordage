@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. include/pkg_manager.sh
+
 ### Functions: ----------------------------------------------------------------
 
 install_global() {
@@ -8,9 +10,16 @@ install_global() {
     pkg/default/p/python-software-properties.sh install_global;
 
     # Installation:
-    sudo add-apt-repository ppa:chris-lea/node.js;
-    sudo apt-get update;
-    sudo apt-get install nodejs;
+    case "$pkg_manager" in
+        apt-get)
+            add-apt-repository ppa:chris-lea/node.js;
+            apt-get update;
+            apt-get install nodejs;
+            ;;
+        *)
+            return 1
+            ;;
+    esac
 }
 
 ### Main: ---------------------------------------------------------------------
