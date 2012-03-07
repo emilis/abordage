@@ -46,9 +46,5 @@ else
 fi
 
 
-cd "$DIR";
-echo $(pwd -P);
-echo "";
-
-bin/abordage.sh setup;
+"$DIR/bin/abordage" setup;
 
