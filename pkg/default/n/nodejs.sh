@@ -17,6 +17,7 @@ install_global() {
             apt-get install nodejs;
             ;;
         *)
+            echo "No instructions on how to install nodejs under '$pkg_manager' package manager."
             return 1
             ;;
     esac
