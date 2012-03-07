@@ -22,8 +22,11 @@ install_package() {
 
 ### Main: ---------------------------------------------------------------------
 
-case "$1" in
-    install|install-package)
-        install_package "$2"
-        ;;
-esac
+if [ $(basename "$0") = "pkg_manager.sh" ];
+then
+    case "$1" in
+        install|install-package)
+            install_package "$2"
+            ;;
+    esac
+fi
