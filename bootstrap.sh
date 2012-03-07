@@ -6,8 +6,16 @@ DIR="abordage";
 
 ### Functions: ----------------------------------------------------------------
 
+is_installed() {
+
+    if [ -d "$DIR" ];
+    then return 0;
+    else return 1;
+    fi
+}
+
 command_exists() {
-    
+
     hash $1 2>&-;
 }
 
@@ -20,18 +28,27 @@ tar_extract() {
 
     tarball="abordage-latest.tar.gz";
     wget -O "$tarball" "https://github.com/emilis/abordage/tarball/master";
-    tar xzvf "$tarball";
+    mkdir "$DIR";
+    tar --directory="$DIR" --strip-components=1 -xzvf "$tarball";
+    echo "\nExtracted into $DIR\n";
 }
 
 ### Main: ---------------------------------------------------------------------
 
-if command_exists git;
-    then git_extract
-    else tar_extract
+if is_installed;
+then
+    echo "Abordage directory already exists.";
+elif command_exists git;
+then
+    git_extract
+else
+    tar_extract
 fi
+
 
 cd "$DIR";
 echo $(pwd -P);
+echo "";
 
 bin/abordage.sh setup;
 
