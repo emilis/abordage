@@ -2,5 +2,6 @@
 
 DIR="$(dirname $(dirname $(readlink -e $0)))";
 
+export target_dir="$PWD";
 cd "$DIR";
 bin/arr.sh "$@"
