@@ -1,6 +1,11 @@
 #!/bin/sh
 
-DIR="$(dirname $(dirname $(readlink -e $0)))";
+ARR=$(readlink -e $0);
+if [ -z "$ARR" ];
+then ARR=$(readlink -e $(which $0));
+fi
+
+DIR="$(dirname $(dirname $ARR))";
 
 export target_dir="$PWD";
 cd "$DIR";
