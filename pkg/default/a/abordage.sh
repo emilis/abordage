@@ -22,7 +22,7 @@ _install_tasks() {
 
 install_global() {
 
-    . pkg/default/g/git.sh install_global
+    pkg/default/g/git.sh install_global
 
     if [ -z "$PREFIX" ]; then   PREFIX="/usr"; fi
     if [ -z "$DIR" ]; then      DIR="$PREFIX/lib/abordage"; fi
@@ -33,8 +33,8 @@ install_global() {
 
 install() {
 
-    . pkg/default/g/git.sh install
-    . pkg/default/h/home-bin.sh install
+    pkg/default/g/git.sh install
+    pkg/default/h/home-bin.sh install
 
     if [ -z "$PREFIX" ]; then   PREFIX="$HOME/local"; fi
     if [ -z "$DIR" ]; then      DIR="$PREFIX/abordage"; fi
