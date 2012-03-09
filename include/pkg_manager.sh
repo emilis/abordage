@@ -18,6 +18,20 @@ install_package() {
     fi
 }
 
+install_command() {
+
+    if [ -z "$1" -o -z "$2" ];
+    then echo "Usage: install_command CMD PKG_NAME";
+    fi
+
+    if hash "$1" 2>&-;
+    then
+        echo "Command $1 is already installed.";
+    else
+        install_package "$2";
+    fi
+}
+
 
 ### Main: ---------------------------------------------------------------------
 
