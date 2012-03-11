@@ -10,10 +10,17 @@ get_pkg_script() {
     default_pkg="pkg/default/$first_char/$name.sh"
     private_pkg="pkg/private/$first_char/$name.sh"
 
-    if [ -f "$private_pkg" ]
+    if [ -z "$name" ];
+        then
+            echo "Please supply a package name." >&2;
+            return 1;
+    elif [ -f "$private_pkg" ]
         then pkg_script="$private_pkg"
     elif [ -f "$default_pkg" ]
         then pkg_script="$default_pkg"
+    else
+        echo "The script file for the package $name does not exits." >&2;
+        exit 127;
     fi
 }
 
@@ -31,19 +38,27 @@ check_task_status() {
     esac
 }
 
+search_packages() {
+
+    if [ -z "$1" ];
+    then pattern='*.sh';
+    else pattern="*$1*.sh";
+    fi
+
+    find pkg/ \
+        -type f \
+        -name "$pattern" \
+        -printf '%f\b\b\b   \n' | sort
+}
+
 ### Main: ---------------------------------------------------------------------
 
-get_pkg_script "$2"
 
-if [ -z "$pkg_script" -o ! -f "$pkg_script" ];
-then
-    echo "The script $pkg_script for the package $2 does not exist." >&2;
-    exit 127;
-fi
 
 case $1 in
 
     install|install-local)
+        get_pkg_script "$2"
         "$pkg_script" install;
         check_task_status $? install
     ;;
@@ -55,10 +70,15 @@ case $1 in
             echo "Please try \"sudo $0 $@\"" >&2;
             exit 126;
         else
+            get_pkg_script "$2"
             "$pkg_script" install_global;
             check_task_status $? install_global
         fi
     ;;
+
+    list|search)
+        search_packages "$2"
+        ;;
 
     *)
         echo "Usage: arr {install|install-global}"
