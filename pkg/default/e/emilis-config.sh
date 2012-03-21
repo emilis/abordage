@@ -31,6 +31,7 @@ install() {
 
     # Dependencies:
     install_command git git;
+    install_command ctags-exuberant exuberant-ctags;
 
     if [ -z "$target_dir" ]; then target_dir="."; fi
     DIR="$target_dir/emilis-config";
